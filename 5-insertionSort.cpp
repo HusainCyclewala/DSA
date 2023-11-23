@@ -21,7 +21,7 @@ int main()
     for (i = 1; i < n; i++)     //i STARTS FROM 1 SINCE THE FIRST ELEMENT IS CONSIDERED SORTED.
     {
         temp = arr[i];      //TO COMPARE.
-        j = i - 1;
+        j = i - 1;          //J IS THE SORTED ARRAY.
         while (j >= 0 && arr[j] > temp) // SO THAT J KEEPS MOVING AHEAD SINCE ITS LARGER
         {
             arr[j + 1] = arr[j];
@@ -29,6 +29,7 @@ int main()
         }
         arr[j + 1] = temp; // AFTER ALL THE COMPARISIONS FINALLY TRANSFERING TEMP TO ARR[J].
     }
+
 
 
 

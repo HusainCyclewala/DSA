@@ -22,6 +22,7 @@ int main()
     for (i = 0; i < n - 1; i++) // FOR PASSES
     {
         min = i;                    // FOR CHECKING LATER
+
         for (j = i + 1; j < n; j++) // FOR TRAVERSING LINEAR SEARCH
         {
             if (arr[j] < arr[min]) // IF ELEMENT IS LESS THAN MIN.PUSH IT BEHIND
@@ -37,6 +38,10 @@ int main()
             arr[min] = temp;
         }
     }
+
+    
+
+    
 
         printf("\nSorted array: ");
     for (i = 0; i < n; i++)
