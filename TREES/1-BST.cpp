@@ -8,7 +8,8 @@ sn
 {
     int data;
     sn *left, *right;
-}*root;
+}
+*root;
 
 void create()
 {
@@ -24,6 +25,7 @@ void create()
         newnode->data = data;
         newnode->left = newnode->right = NULL;
         parent = temp = root;
+
         if (!root)
             root = newnode;
 
@@ -83,7 +85,8 @@ void deleteNode()
     printf("\nEnter the data of node to be deleted: ");
     scanf("%d", &data);
     parent = temp = root;
-    while (temp && temp->data != data)
+
+    while (temp!=NULL && temp->data != data)
     {
         parent = temp;
         if (temp->data > data)
@@ -124,7 +127,7 @@ void deleteNode()
         {
             parent = temp;
             pred = temp->left;
-            while (pred->right)
+            while (pred->right!=NULL)
             {
                 parent = pred;
                 pred = pred->right;
@@ -143,7 +146,7 @@ void deleteNode()
 void mirror(sn *temp)
 {
     sn *t1;
-    if (!temp)
+    if (temp==NULL)
     {
         mirror(temp->left);
         mirror(temp->right);
@@ -157,15 +160,16 @@ int totalNodes(sn *temp)
 {
     if (!temp)
         return 0;
-    else
+    else{
         return totalNodes(temp->left) + totalNodes(temp->right) + 1;
+    }
 }
 
 int externalNodes(sn *temp)
 {
     if (!temp)
         return 0;
-    else if (!temp->left && !temp->right)
+    else if (temp->left==NULL && temp->right==NULL)
         return 1;
     else
         return externalNodes(temp->left) + externalNodes(temp->right);
@@ -194,7 +198,7 @@ int height(sn *temp)
 
 void preOrder(sn *temp)
 {
-    if (temp)
+    if (temp!=NULL)
     {
         printf("%d ", temp->data);
         preOrder(temp->left);
