@@ -18,7 +18,7 @@ int main()
 
 
 
-    for (i = 1; i < n; i++)     //i STARTS FROM 1 SINCE THE FIRST ELEMENT IS CONSIDERED SORTED.
+    for (i = 1; i < n; i++)     //i unsorted array STARTS FROM 1 SINCE THE FIRST ELEMENT IS CONSIDERED SORTED.
     {
         temp = arr[i];      //TO COMPARE.
         j = i - 1;          //J IS THE SORTED ARRAY.

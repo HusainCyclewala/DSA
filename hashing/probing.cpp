@@ -6,24 +6,12 @@ int key = -1;
 int h[SIZE] = {0};
 
 
+// int linear(int a, int i)
+// {
+//     return ((a + i) % SIZE);
+// }
 
-
-
-int double_h(int coeff_1, int coeff_2, int const_1, int const_2, int key, int i)
-{
-    int function1_ans = (coeff_1 * key) + const_1;
-    int fn1 = function1_ans % SIZE;
-    int function2_ans = (coeff_2 * key) + const_2;
-    int fn2 = function2_ans % SIZE;
-    return ((fn1 + (fn2 * i)) % SIZE);
-}
-
-int linear(int a, int i)
-{
-    return ((a + i) % SIZE);
-}
-
-int linear_hash()
+int linear_hash()///linear probing (khoj) means linear khoj ki next empty space kidar hai. 
 {
     int i = 0;
     int index = -1;
@@ -33,11 +21,12 @@ int linear_hash()
 
     for (i = 0; i < SIZE; i++)
     {
-        index = linear(key, i);
+        // index = linear(key, i);
+        index = (key +i) % SIZE;
 
-        if (h[index] == 0)      //NO VALUE AT THAT INDEX IN HASH TABLE
+        if (h[index] == 0)                                              //NO VALUE AT THAT INDEX IN HASH TABLE
         {
-            h[index] = key;        //THEN INSERT THE VALUE AT THAT INDEX.
+            h[index] = key;                                             //THEN INSERT THE VALUE AT THAT INDEX.
             printf("\nValue %d inserted at index %d\n", key, index);
             return 0;
         }
@@ -58,7 +47,8 @@ int linear_search()
 
     for (i=0; i < SIZE; i++)
     {
-        index = linear(key, i);
+        // index = linear(key, i);
+        index = (key +i) % SIZE;
 
         if (h[index] == key)
         {
@@ -74,13 +64,13 @@ int linear_search()
     return 0;
 }
 
-int quad(int coefficient, int constant, int key, int i)
+int quad(int coefficient, int constant, int key, int i)         //eg. hkey = 2k + 3
 {
-    int function_ans = (coefficient * key) + constant;
-    return ((function_ans + i * i) % SIZE);
+    int function_ans = (coefficient * key) + constant;         
+    return ((function_ans + i * i) % SIZE);                     // index = [(2k+3) + i*i] % SIZE
 }
 
-int quadratic_hash()
+int quadratic_hash()                                //(key + i^2) % SIZE
 {
     int coefficient = 0, constant = 0, i = 0, key = -1, index = -1;
     printf("Enter value:\n");
@@ -94,6 +84,7 @@ int quadratic_hash()
     for (i = 0; i < SIZE; i++)
     {
         index = quad(coefficient, constant, key, i);
+
         if (h[index] == 0)
         {
             h[index] = key;
@@ -136,6 +127,15 @@ int quadratic_search()
     return 0;
 }
 
+int double_h(int coeff_1, int coeff_2, int const_1, int const_2, int key, int i)
+{
+    int function1_ans = (coeff_1 * key) + const_1;      //eg. 2k + 3
+    int fn1 = function1_ans % SIZE;                     // h1key % size
+    int function2_ans = (coeff_2 * key) + const_2;      // eg. 3k +1
+    int fn2 = function2_ans % SIZE;                  // h2key % size
+    return ((fn1 + (fn2 * i)) % SIZE);              // [u + (v * i)] % size
+}
+
 int double_hash()
 {
     int coeff_1 = 0, const_1 = 0, coeff_2 = 0, const_2 = 0, i = 0, key = -1, index = -1;
@@ -148,9 +148,11 @@ int double_hash()
     scanf("%d", &coeff_2);
     printf("Enter constant: ");
     scanf("%d", &const_2);
-    printf("Enter value:\n");
+    printf("Enter value:\n");       // k
     scanf("%d", &key);
     printf("\n");
+
+
     for (i = 0; i < SIZE; i++)
     {
         index = double_h(coeff_1, coeff_2, const_1, const_2, key, i);
@@ -208,6 +210,13 @@ void display()
         printf("\nIndex %d value =  %d", i, h[i]);
     }
 }
+
+
+
+
+
+
+
 
 int insert()
 {

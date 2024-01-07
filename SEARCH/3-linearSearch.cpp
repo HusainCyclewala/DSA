@@ -36,6 +36,7 @@ int main()
     scanf("%d", &key);
 
     location = linearSearch(arr, n, key);
+    
     if (location == -1)
     {
         printf("\ninvalid search element");

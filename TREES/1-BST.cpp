@@ -26,12 +26,12 @@ void create()
         newnode->left = newnode->right = NULL;
         parent = temp = root;
 
-        if (!root)
+        if (root == NULL)
             root = newnode;
 
         else
         {
-            while (temp)
+            while (temp != NULL)
             {
                 parent = temp;
                 if (temp->data > data)
@@ -57,12 +57,12 @@ void insert()
     newnode->data = data;
     newnode->left = newnode->right = NULL;
     parent = temp = root;
-    if (!root)
+    if (root == NULL)
         root = newnode;
 
     else
     {
-        while (temp)
+        while (temp != NULL)
         {
             parent = temp;
             if (temp->data > data)
@@ -86,7 +86,7 @@ void deleteNode()
     scanf("%d", &data);
     parent = temp = root;
 
-    while (temp!=NULL && temp->data != data)
+    while (temp != NULL && temp->data != data)
     {
         parent = temp;
         if (temp->data > data)
@@ -102,43 +102,53 @@ void deleteNode()
     }
     else
     {
-        if (!temp->left && !temp->right)
+        if (!temp->left && !temp->right) // leaf node no child.
         {
             if (parent->left == temp)
                 parent->left = NULL;
             else
                 parent->right = NULL;
         }
-        else if (!temp->right)
+
+        else if (!temp->right) // only left child
         {
             if (parent->left == temp)
                 parent->left = temp->left;
             else
                 parent->right = temp->left;
         }
-        else if (!temp->left)
+
+        else if (!temp->left) // only right child.
         {
             if (parent->left == temp)
                 parent->left = temp->right;
             else
                 parent->right = temp->right;
         }
-        else
+
+        else // both child exist.
         {
             parent = temp;
             pred = temp->left;
-            while (pred->right!=NULL)
+
+            // Find the rightmost node in the left subtree (predecessor).
+            while (pred->right != NULL)
             {
                 parent = pred;
                 pred = pred->right;
             }
+
+            // Update parent pointers to detach the predecessor node.
             if (parent->left == pred)
                 parent->left = pred->left;
             else
                 parent->right = pred->left;
+
+            // Copy data from the predecessor node to the node to be deleted.
             temp->data = pred->data;
             temp = pred;
         }
+
         free(temp);
     }
 }
@@ -146,7 +156,7 @@ void deleteNode()
 void mirror(sn *temp)
 {
     sn *t1;
-    if (temp==NULL)
+    if (temp == NULL)
     {
         mirror(temp->left);
         mirror(temp->right);
@@ -160,7 +170,8 @@ int totalNodes(sn *temp)
 {
     if (!temp)
         return 0;
-    else{
+    else
+    {
         return totalNodes(temp->left) + totalNodes(temp->right) + 1;
     }
 }
@@ -169,7 +180,7 @@ int externalNodes(sn *temp)
 {
     if (!temp)
         return 0;
-    else if (temp->left==NULL && temp->right==NULL)
+    else if (temp->left == NULL && temp->right == NULL)
         return 1;
     else
         return externalNodes(temp->left) + externalNodes(temp->right);
@@ -198,7 +209,7 @@ int height(sn *temp)
 
 void preOrder(sn *temp)
 {
-    if (temp!=NULL)
+    if (temp != NULL)
     {
         printf("%d ", temp->data);
         preOrder(temp->left);
@@ -280,6 +291,7 @@ int main()
             printf("\nThe height of the tree is: %d", height(root));
             break;
         case 11:
+            printf("exiting program....");
             break;
         default:
             printf("Invalid choice");
@@ -289,3 +301,81 @@ int main()
     // getch();
     return 0;
 }
+
+//  PRACTICE
+// #include <stdio.h>
+// #include <stdlib.h>
+// #include <malloc.h>
+// #include <conio.h>
+
+// struct node
+// {
+//     int data;
+//     struct node *left, *right;
+// } *temp, *newnode, *parent;
+
+// void create()
+// {
+//     int i, n, data;
+//     struct node *root;
+//     printf("enter no. of nodes:");
+//     scanf("%d", &n);
+//     for (i = 0; i < n; i++)
+//     {
+//         newnode = (struct node *)malloc(sizeof(struct node));
+//         printf("enter the data: ");
+//         scanf("%d", &newnode->data);
+//         newnode->right = newnode->left = NULL;
+//         parent = temp = root;
+
+//         if (root == NULL)
+//         {
+//             root = newnode;
+//         }
+//         else
+//         {
+//             while (temp != NULL)
+//             {
+//                 parent = temp;
+//                 if (temp->data > data)
+//                 {
+//                     temp = temp->left;
+//                 }
+//                 else
+//                 {
+//                     temp = temp->right;
+//                 }
+//             }
+//             if (parent->data > data)
+//             {
+//                 parent->left = newnode;
+//             }
+//             else
+//             {
+//                 parent->right = newnode;
+//             }
+//         }
+//     }
+// }
+
+// int height(struct node *temp)
+// {
+//     int l, r;
+//     if (temp == NULL)
+//     {
+//         return 0;
+//     }
+//     else
+//     {
+//         l = height(temp->left);
+//         r = height(temp->right);
+//         if (l > r)
+//         {
+//             return l + 1;
+//         }
+//         else
+//         {
+//             return r + 1;
+//         }
+//     }
+// }

@@ -40,7 +40,9 @@ int main()
     printf("\nenter the element to find: ");
     scanf("%d", &key);
 
+
     location = binarySearch(arr, n, key);
+    
     if (location == -1)
     {
         printf("\nelemnt wrong");

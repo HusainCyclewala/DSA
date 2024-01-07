@@ -74,7 +74,6 @@ int main()
         if (isalnum(x))
         {
             postfix[j++] = x;
-
         }
         else if (x == '+' || x == '-' || x == '*' || x == '/' || x == '%')
         {
@@ -82,7 +81,6 @@ int main()
             if (top != -1 && getPriority(x) > getPriority(peek()))
             {
                 push(x);
-
             }
             else
             {
@@ -92,13 +90,11 @@ int main()
                 }
                 push(x);
             }
-
         }
         else if (x == '(')
         {
 
             push(x);
-
         }
 
         else if (x == ')')
@@ -125,5 +121,4 @@ int main()
 
     // getch();
     return 0;
-
 }
