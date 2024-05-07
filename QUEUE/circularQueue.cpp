@@ -66,6 +66,7 @@ void display()
             i = (i + 1) % SIZE;
         }
         printf("%d", queue[i]);             //to print the last element
+
     }
 }
 

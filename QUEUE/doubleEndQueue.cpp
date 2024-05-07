@@ -19,8 +19,9 @@ void enqueueUsingFront(int val)
             front++;
             rear++;
         }
-        else
+        else{
             front = (front + SIZE - 1) % SIZE;
+        }
         queue[front] = val;
     }
 }
@@ -32,8 +33,9 @@ void enqueueUsingRear(int val)
     }
     else
     {
-        if (front == -1)
+        if (front == -1){
             front++;
+        }
         rear = (rear + 1) % SIZE;
         queue[rear] = val;
     }

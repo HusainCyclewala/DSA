@@ -82,7 +82,7 @@ void insertBefore()
 {
     int i = 1, pos;
 
-    printf("\nEnter position at which u want ton insert data: ");
+    printf("\nEnter POSITION at which u want ton insert data: ");
     scanf("%d", &pos);
     if (pos <= 0)
     {
@@ -250,11 +250,13 @@ int main()
         switch (i)
         {
         case 1:
-            insert_before();
+            // insert_before();
+            insertBefore();
             break;
 
         case 2:
-            insert_after();
+            // insert_after();
+            insertEnd();
             break;
 
         case 3:
